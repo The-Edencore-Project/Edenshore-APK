@@ -3,6 +3,8 @@ title = Edenshore
 package.name = edenshore
 package.domain = org.edencore
 
+version = 1.0.0
+
 source.dir = .
 # We include all file types your app uses
 source.include_exts = py,png,jpg,kv,atlas,ogg,json,md
