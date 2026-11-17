@@ -3,25 +3,26 @@ name: Build Edenshore APK
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  build:
-    runs-on: ubuntu-22.04
-
+  build-android:
+    name: Build for Android
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Buildozer Action
-        uses: GabrielDorneles/buildozer-action@v1
+      - name: Build with Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
         with:
-          command: android debug
-        env:
-          BUILDOZER_WARN_ON_ROOT: 0
+          command: buildozer android debug
+          buildozer_version: stable
 
-      - name: Upload APK
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: edenshore-apk
-          path: bin/*.apk
+          path: ${{ steps.buildozer.outputs.filename }}
