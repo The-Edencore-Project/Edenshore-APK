@@ -59,3 +59,4 @@ android.accept_sdk_license = True
 # ──────────────────────────────
 [buildozer]
 warn_on_root = 0
+
