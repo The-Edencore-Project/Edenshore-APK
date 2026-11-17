@@ -1,6 +1,5 @@
-FROM python:3.12-slim
+FROM python:3.11-slim-bookworm
 
-# Install system dependencies required by Buildozer
 RUN apt-get update && apt-get install -y \
     build-essential \
     git \
@@ -13,12 +12,10 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     libncurses5-dev \
     libncursesw5-dev \
-    libtinfo5 \
     cmake \
     libffi-dev \
     libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Buildozer and Cython
 RUN pip install --upgrade pip
 RUN pip install buildozer==1.5.0 cython==0.29.36
