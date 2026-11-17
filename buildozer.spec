@@ -8,6 +8,9 @@ package.name = edenshore
 # (str) Package domain
 package.domain = org.edencore
 
+# (str) Version of the app
+version = 1.0
+
 # (str) Source code where the main.py is located
 source.dir = .
 
@@ -23,7 +26,7 @@ requirements = python3,kivy,plyer,pyjnius
 # (bool) Indicate if the application should be fullscreen or not
 fullscreen = 1
 
-# (str) Supported orientation (Portrait mode for phone/tablet)
+# (str) Supported orientation
 orientation = portrait
 
 # (list) Permissions
