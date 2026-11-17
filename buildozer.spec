@@ -21,7 +21,8 @@ source.include_exts = py,png,jpg,jpeg,json,txt,kv,mp3,wav,ogg,md
 source.exclude_dirs = tests, bin, .git, .github, __pycache__
 
 # (list) Application requirements
-requirements = python3,kivy,plyer,pyjnius
+# REMOVED pyjnius to prevent compilation errors.
+requirements = python3,kivy,plyer
 
 # (bool) Indicate if the application should be fullscreen or not
 fullscreen = 1
