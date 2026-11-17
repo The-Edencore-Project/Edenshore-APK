@@ -1,4 +1,5 @@
-name: Build Eden APK
+name: Build Edenshore APK
+
 on:
   push:
     branches: [ main ]
@@ -7,25 +8,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Buildozer & dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
-          pip3 install --user buildozer cython==0.29.37
-
-      - name: Accept Android SDK licenses
-        run: |
-          mkdir -p ~/.android
-          echo "24333f8a63b6825ea9c5514f834c289b0040d56a" > ~/.android/android-sdk-license
-          echo "84831b9409646a918e30573bab4c9c91346d8abd" > ~/.android/android-sdk-preview-license
-
-      - name: Build APK
-        run: |
-          echo "y" | buildozer android debug
+      - name: Buildozer Action
+        uses: kivy/buildozer-action@v1
+        with:
+          command: android debug
+        env:
+          BUILDOZER_WARN_ON_ROOT: 0
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
