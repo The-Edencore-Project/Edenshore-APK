@@ -14,13 +14,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build with Official Kivy Docker Image
+      - name: Build Custom Buildozer Docker Image
+        run: |
+          docker build -t my-buildozer -f Dockerfile.buildozer .
+
+      - name: Run Buildozer inside Docker
         run: |
           docker run --rm \
             -v ${{ github.workspace }}:/home/user/hostcwd \
             -v $HOME/.buildozer:/home/user/.buildozer \
-            kivy/buildozer:latest \
-            android debug
+            my-buildozer \
+            buildozer android debug
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
