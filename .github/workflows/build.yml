@@ -1,28 +1,38 @@
-name: Build Eden APK
-on: [push, pull_request]
+name: Build EdenShore APK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:  # Lets you manually click "Run workflow"
 
 jobs:
-  build-android:
-    name: Build for Android
+  build:
     runs-on: ubuntu-22.04
-    container:
-      image: ghcr.io/kivy/buildozer:latest
-      options: --user root
+
     steps:
-      - name: Checkout code
+      - name: 📥 Checkout your project files
         uses: actions/checkout@v4
 
-      - name: Accept Android SDK Licenses
+      - name: 🛠️ Set up Buildozer
+        uses: kivy/buildozer-action@v1
+        with:
+          buildozer_version: stable
+
+      - name: ✅ Accept Android SDK licenses
         run: |
           mkdir -p ~/.android
           echo "24333f8a63b6825ea9c5514f834c289b0040d56a" > ~/.android/android-sdk-license
           echo "84831b9409646a918e30573bab4c9c91346d8abd" > ~/.android/android-sdk-preview-license
 
-      - name: Build APK with Buildozer
-        run: buildozer android debug
+      - name: 📦 Build APK
+        run: |
+          export BUILDOZER_WARN_ON_ROOT=0
+          buildozer android debug --no-warn-on-root
 
-      - name: Upload APK artifact
+      - name: 📤 Upload finished APK
         uses: actions/upload-artifact@v4
         with:
-          name: edenshore-apk
-          path: bin/*.apk
+          name = edenshore-app
+          path = bin/*.apk
