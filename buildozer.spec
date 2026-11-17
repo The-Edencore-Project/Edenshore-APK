@@ -1,40 +1,33 @@
 [app]
-
 # (str) Title of your application
-title = EdenShore
+title = Edenshore
 
 # (str) Package name
 package.name = edenshore
 
-# (str) Package domain (needed for android/ios packaging)
-package.domain = org.edenshore
+# (str) Package domain
+package.domain = org.edencore
 
 # (str) Source code where the main.py is located
 source.dir = .
 
-# (list) List of inclusions (patterns are relative to source.dir)
-source.include_exts = py,png,jpg,jpeg,json,txt,kv,mp3,wav,ogg
+# (list) List of inclusions
+source.include_exts = py,png,jpg,jpeg,json,txt,kv,mp3,wav,ogg,md
 
 # (list) List of exclusions
-source.exclude_dirs = tests, bin, .git, .github
+source.exclude_dirs = tests, bin, .git, .github, __pycache__
 
 # (list) Application requirements
-requirements = python3,kivy
-
-# (str) Presplash of the application
-presplash.filename = %(source.dir)s/data/presplash.png
-
-# (str) Icon of the application
-icon.filename = %(source.dir)s/data/icon.png
+requirements = python3,kivy,plyer,pyjnius
 
 # (bool) Indicate if the application should be fullscreen or not
 fullscreen = 1
 
-# (str) Supported orientation (landscape, portrait, all)
+# (str) Supported orientation (Portrait mode for phone/tablet)
 orientation = portrait
 
 # (list) Permissions
-android.permissions = INTERNET
+android.permissions = INTERNET, VIBRATE
 
 # (int) Target Android API
 android.api = 33
