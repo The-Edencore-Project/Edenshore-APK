@@ -57,9 +57,8 @@ android.accept_sdk_license = True
 # ──────────────────────────────
 # ✅ THIS PART FIXES THE ROOT PROMPT
 # ──────────────────────────────
-[buildozer]
-warn_on_root = 0
 
 [buildozer]
 warn_on_root = 0
+android.accept_sdk_license = True
 
