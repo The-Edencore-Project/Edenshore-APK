@@ -1,8 +1,35 @@
-- name: Run Buildozer inside Docker
-  run: |
-    docker run --rm \
-      -w /home/user/hostcwd \
-      -v ${{ github.workspace }}:/home/user/hostcwd \
-      -v $HOME/.buildozer:/home/user/.buildozer \
-      my-buildozer \
-      bash -c "buildozer android debug"
+name: Build Edenshore APK
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-android:
+    name: Build for Android
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Custom Buildozer Docker Image
+        run: |
+          docker build -t my-buildozer -f Dockerfile.buildozer .
+
+      - name: Run Buildozer inside Docker
+        run: |
+          docker run --rm \
+            -w /home/user/hostcwd \
+            -v ${{ github.workspace }}:/home/user/hostcwd \
+            -v $HOME/.buildozer:/home/user/.buildozer \
+            my-buildozer \
+            bash -c "yes y | buildozer android debug"
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: edenshore-apk
+          path: bin/*.apk
