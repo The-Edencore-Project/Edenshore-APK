@@ -11,10 +11,10 @@ source.exclude_dirs = tests, bin, .git, .github, __pycache__, .buildozer
 # Pin Python to 3.11.9
 requirements = python3==3.11.9,hostpython3==3.11.9,kivy,plyer
 
-# Pin p4a to a stable, compatible release
-p4a.branch = v2024.03.12
+# CRITICAL: Use the 'develop' branch to avoid the missing branch error
+p4a.branch = develop
 
-# CRITICAL: Tell p4a not to upgrade pip inside its virtualenv
+# Tell p4a not to upgrade pip inside its virtualenv
 p4a.pip_no_upgrade = 1
 
 fullscreen = 1
