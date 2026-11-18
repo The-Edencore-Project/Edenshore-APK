@@ -31,6 +31,9 @@ log_level = 2
 android.allow_backup = True
 android.release_artifact = apk
 
+p4a.url = https://github.com/kivy/python-for-android.git
+p4a.branch = master
+
 [buildozer]
 
 warn_on_root = 0
