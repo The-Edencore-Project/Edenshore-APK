@@ -1,4 +1,9 @@
 [app]
+...
+# (str) Directory of your own recipes
+p4a.local_recipes = p4a-recipes
+...
+
 title = Edenshore
 package.name = edenshore
 package.domain = org.edencore
