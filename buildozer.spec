@@ -1,55 +1,56 @@
 [app]
-# (str) Title of your application
+
+# App Information
 title = Edenshore
-
-# (str) Package name
 package.name = edenshore
-
-# (str) Package domain
 package.domain = org.edencore
 
-# (str) Version of the app
+# Version
 version = 1.0
 
-# (str) Source code where the main.py is located
+# Source
 source.dir = .
-
-# (list) List of inclusions
 source.include_exts = py,png,jpg,jpeg,json,txt,kv,mp3,wav,ogg,md
+source.exclude_dirs = tests,bin,.git,.github,__pycache__
 
-# (list) List of exclusions
-source.exclude_dirs = tests, bin, .git, .github, __pycache__
+# Requirements
+requirements = python3==3.11.9,kivy,plyer
 
-# (list) Application requirements
-# REMOVED pyjnius to prevent compilation errors.
-requirements = python3,kivy,plyer
-
-# (bool) Indicate if the application should be fullscreen or not
+# Display
 fullscreen = 1
-
-# (str) Supported orientation
 orientation = portrait
 
-# (list) Permissions
-android.permissions = INTERNET, VIBRATE
+# Android Permissions
+android.permissions = INTERNET,VIBRATE
 
-# (int) Target Android API
+# Android SDK Settings
 android.api = 33
-
-# (int) Minimum API your APK will support
 android.minapi = 21
-
-# (str) Android NDK version to use
 android.ndk = 25b
 
-# (str) Android SDK version to use
-android.sdk = 24
-
-# (bool) If True, then skip trying to update the Android sdk
+# SDK Management
 android.skip_update = False
-
-# (bool) Automatically accept Android SDK licenses
 android.accept_sdk_license = True
 
+# Python-for-Android
+p4a.branch = develop
+
+# Architectures
+android.archs = arm64-v8a, armeabi-v7a
+
+# Build Options
+log_level = 2
+
+# Presplash and Icon (uncomment when files exist)
+# presplash.filename = assets/images/presplash.png
+# icon.filename = assets/images/icon.png
+
+# Android Behaviour
+android.allow_backup = True
+
+# Packaging
+android.release_artifact = apk
+
 [buildozer]
+
 warn_on_root = 0
