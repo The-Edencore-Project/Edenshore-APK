@@ -1,25 +1,18 @@
 [app]
-...
-# (str) Directory of your own recipes
-p4a.local_recipes = p4a-recipes
-...
-
 title = Edenshore
 package.name = edenshore
 package.domain = org.edencore
 version = 1.0
 
+p4a.local_recipes = p4a-recipes
+
 source.dir = .
 source.include_exts = py,png,jpg,jpeg,json,txt,kv,mp3,wav,ogg,md
 source.exclude_dirs = tests, bin, .git, .github, __pycache__, .buildozer
 
-# Pin Python to 3.11.9
 requirements = python3==3.11.9,hostpython3==3.11.9,kivy,plyer
 
-# CRITICAL: Use the 'develop' branch to avoid the missing branch error
 p4a.branch = develop
-
-# Tell p4a not to upgrade pip inside its virtualenv
 p4a.pip_no_upgrade = 1
 
 fullscreen = 1
