@@ -33,3 +33,4 @@ jobs:
         with:
           name: edenshore-apk
           path: bin/*.apk
+
