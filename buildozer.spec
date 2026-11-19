@@ -25,7 +25,6 @@ android.accept_sdk_license = True
 log_level = 2
 
 p4a.tag = v2026.05.09
-p4a.pip_no_upgrade = 1
 
 [buildozer]
 warn_on_root = 0
