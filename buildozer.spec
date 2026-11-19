@@ -27,7 +27,7 @@ android.accept_sdk_license = True
 log_level = 2
 
 p4a.url = https://github.com/kivy/python-for-android.git
-p4a.branch = 2024.01.21
+p4a.branch = develop
 
 [buildozer]
 
