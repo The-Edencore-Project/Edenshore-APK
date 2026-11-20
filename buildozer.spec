@@ -11,7 +11,7 @@ source.dir = .
 source.include_exts = py,png,jpg,jpeg,json,txt,kv,mp3,wav,ogg,md
 source.exclude_dirs = tests,bin,.git,.github,__pycache__,.buildozer
 
-requirements = python3==3.11.9,kivy,plyer
+requirements = python3==3.11.9,hostpython3==3.11.9,kivy,plyer
 
 fullscreen = 1
 orientation = portrait
