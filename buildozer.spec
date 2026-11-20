@@ -2,32 +2,26 @@
 
 title = Edenshore
 package.name = edenshore
-package.domain = org.edencore
-
-version = 1.0
+package.domain = org.edenshore
 
 source.dir = .
+source.include_exts = py,png,jpg,jpeg,kv,wav,ogg,ttf,json,txt
 
-source.include_exts = py,png,jpg,jpeg,json,txt,kv,mp3,wav,ogg,md
-source.exclude_dirs = tests,bin,.git,.github,__pycache__,.buildozer
+version = 0.1
 
-requirements = python3==3.11.9,hostpython3==3.11.9,kivy,plyer
+requirements = python3,kivy,plyer
 
-fullscreen = 1
 orientation = portrait
 
-android.permissions = INTERNET,VIBRATE
+fullscreen = 0
 
 android.api = 33
 android.minapi = 21
 android.ndk = 25b
 
-android.accept_sdk_license = True
+android.archs = arm64-v8a, armeabi-v7a
 
 log_level = 2
-
-p4a.url = https://github.com/kivy/python-for-android.git
-p4a.branch = master
 
 [buildozer]
 
