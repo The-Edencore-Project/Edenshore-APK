@@ -1,42 +1,38 @@
-name: Build Edenshore APK
+name: Android APK Build
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
-  build-android:
-    name: Build for Android
+  build:
     runs-on: ubuntu-latest
 
+    container:
+      image: ghcr.io/YOUR_ACCOUNT/YOUR_IMAGE:latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Clean previous build cache
+      - name: Clean Buildozer Cache
         run: |
           rm -rf .buildozer
-          rm -rf bin
+          rm -rf /root/.buildozer
 
-      - name: Build Custom Buildozer Image
+      - name: Show Versions
         run: |
-          docker build -t my-buildozer -f Dockerfile.buildozer .
+          python --version
+          pip --version
+          buildozer --version
 
-      - name: Run Buildozer inside Docker
+      - name: Build APK
         run: |
-          docker run --rm \
-            -w /home/user/hostcwd \
-            -v ${{ github.workspace }}:/home/user/hostcwd \
-            my-buildozer \
-            bash -c "
-              pip install 'pip<24' &&
-              yes y | buildozer android debug
-            "
+          buildozer android debug
 
       - name: Upload APK
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Edenshore-APK
-          path: bin/*.apk
+          name: edenshore-apk
+          path: |
+            bin/*.apk
