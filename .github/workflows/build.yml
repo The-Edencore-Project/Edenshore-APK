@@ -1,33 +1,34 @@
-name: Android APK Build
+name: Build APK
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    container:
-      image: ghcr.io/YOUR_ACCOUNT/YOUR_IMAGE:latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Clean Buildozer Cache
+      - name: Build Docker Image
         run: |
-          rm -rf .buildozer
-          rm -rf /root/.buildozer
-
-      - name: Show Versions
-        run: |
-          python --version
-          pip --version
-          buildozer --version
+          docker build -t my-buildozer .
 
       - name: Build APK
         run: |
-          buildozer android debug
+          docker run --rm \
+            -w /home/user/hostcwd \
+            -v ${{ github.workspace }}:/home/user/hostcwd \
+            my-buildozer \
+            bash -c "
+              rm -rf .buildozer &&
+              pip install 'pip<24' &&
+              yes y | buildozer android debug
+            "
 
       - name: Upload APK
         if: always()
