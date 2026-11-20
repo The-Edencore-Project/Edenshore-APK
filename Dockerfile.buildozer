@@ -1,27 +1,28 @@
 FROM python:3.11-slim-bookworm
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && apt-get install -y \
-    build-essential \
     git \
     zip \
     unzip \
     openjdk-17-jdk \
     autoconf \
+    automake \
     libtool \
     pkg-config \
-    zlib1g-dev \
-    libncurses5-dev \
-    libncursesw5-dev \
-    cmake \
+    build-essential \
+    ccache \
     libffi-dev \
     libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade pip==23.3.2
+RUN python -m pip install --no-cache-dir --force-reinstall pip==23.2.1
 
-RUN pip install \
+RUN pip install --no-cache-dir \
     buildozer==1.5.0 \
-    cython==0.29.36 \
-    virtualenv==20.26.6
+    cython==0.29.36
 
 WORKDIR /home/user/hostcwd
+
+CMD ["buildozer","android","debug"]
